@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Nez.Math;
 
 
 namespace Nez.Splines
@@ -8,8 +9,8 @@ namespace Nez.Splines
 	/// </summary>
 	public class BezierSpline
 	{
-		FastList<Vector2> _points = new FastList<Vector2>();
-		int _curveCount;
+		protected FastList<Vector2> _points = new FastList<Vector2>();
+		protected int _curveCount;
 
 
 		/// <summary>
@@ -93,6 +94,19 @@ namespace Nez.Splines
 		{
 			return Vector2.Normalize(GetVelocityAtTime(t));
 		}
+
+
+		/// <summary>
+		/// adds a curve to the bezier
+		/// </summary>
+		/// <param name="start">Start.</param>
+		/// <param name="firstControlPoint">First control point.</param>
+		/// <param name="secondControlPoint">Second control point.</param>
+		public void AddCurve(FourPointBezier fourPointBezier)
+		{
+			this.AddCurve(fourPointBezier.P0, fourPointBezier.P1, fourPointBezier.P2, fourPointBezier.P3);
+		}
+
 
 
 		/// <summary>
